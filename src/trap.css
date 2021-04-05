@@ -1,0 +1,98 @@
+.back {
+	background-color: orange;
+	text-align: center;
+}
+
+.title {
+	text-align: center;
+	font-family: 'Trebuchet MS', sans-serif;
+	font-size: calc(18px + 2vw);
+	font-weight: bold;
+}
+
+.info {
+	text-align: center;
+	font-family: 'Trebuchet MS', sans-serif;
+	font-size: calc(11px + 1vw);
+}
+
+.topMargin {
+	margin-top: 20px;
+}
+
+@media (max-width: 350px) {
+	.title {
+		font-size: calc(15px + 2vw);
+	}
+	.info {
+		font-size: calc(9px + 2vw);
+	}
+}
+
+.gridContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.trapGrid {
+	--cols: 10;
+	/* default value */
+	--rows: 10;
+	/* default value */
+	display: grid;
+	grid-template-columns: repeat(var(--cols), calc(500px / var(--cols)));
+	grid-template-rows: repeat(var(--rows), calc(500px / var(--rows)));
+	color: blue;
+	padding: 5px;
+	margin: 50px;
+}
+
+@media (max-width: 600px) {
+	.trapGrid {
+		grid-template-columns: repeat(var(--cols), calc(400px / var(--cols)));
+		grid-template-rows: repeat(var(--rows), calc(400px / var(--rows)));
+	}
+}
+
+@media (max-width: 500px) {
+	.trapGrid {
+		grid-template-columns: repeat(var(--cols), calc(350px / var(--cols)));
+		grid-template-rows: repeat(var(--rows), calc(350px / var(--rows)));
+	}
+}
+
+@media (max-width: 400px) {
+	.trapGrid {
+		grid-template-columns: repeat(var(--cols), calc(300px / var(--cols)));
+		grid-template-rows: repeat(var(--rows), calc(300px / var(--rows)));
+	}
+}
+
+@media (max-width: 350px) {
+	.trapGrid {
+		grid-template-columns: repeat(var(--cols), calc(250px / var(--cols)));
+		grid-template-rows: repeat(var(--rows), calc(250px / var(--rows)));
+	}
+}
+
+.gCell {
+	border: 1px solid #D3D3D3;
+	background-color: white;
+}
+
+.gCellLand {
+	background-color: black;
+}
+
+.gCellWater {
+	background-color: blue;
+}
+
+.actButton {
+	font-family: 'Trebuchet MS', sans-serif;
+	text-align: center;
+	margin: 10px;
+	border: 1px solid black;
+	background-color: white;
+}
