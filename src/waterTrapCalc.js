@@ -9,23 +9,23 @@
 
 */
 const makeLandHeightArray = (newCellVals) => {
-	  let gridRows = newCellVals.length;
-	  let gridCols = newCellVals[0].length;
-	  let heightArr = [];
-	  for (let col = 0; col < gridCols; col++)
-	  {
-		  let highestLand = 0;
-		  for (let row = 0; row < gridRows; row++)
-		  {
-			if (newCellVals[row][col] === 'L')
-			{
-               highestLand = gridRows - row;
-			   break;
-			}				
-		  }
-		  heightArr.push(highestLand);
-	  }  
-	  return heightArr;
+    let gridRows = newCellVals.length;
+    let gridCols = newCellVals[0].length;
+    let heightArr = [];
+    for (let col = 0; col < gridCols; col++)
+    {
+      let highestLand = 0;
+      for (let row = 0; row < gridRows; row++)
+      {
+        if (newCellVals[row][col] === 'L')
+        {
+           highestLand = gridRows - row;
+           break;
+        }        
+      }
+      heightArr.push(highestLand);
+    }  
+    return heightArr;
 }
 
 
@@ -44,32 +44,32 @@ const waterTrapCalc = function(cellVals) {
   let water = 0;
   let heightarr = makeLandHeightArray(cellVals);
   let len = heightarr.length;
-	
+  
   for (let h = 0; ; h++ )
   {
-	  let lastLand = -1;
-      for (let i = 0; i < len; i++)
+    let lastLand = -1;
+    for (let i = 0; i < len; i++)
+    {
+      if (heightarr[i] > 0)
       {
-          if (heightarr[i] > 0)
+        if ((lastLand > -1) && (lastLand !== i - 1))
+        {
+          water += i - lastLand - 1;
+          
+          // fill in water in applicable cells
+          for (let waterInd = lastLand + 1; waterInd < i; waterInd++)
           {
-              if ((lastLand > -1) && (lastLand !== i - 1))
-			  {
-                  water += i - lastLand - 1;
-				  
-				  // fill in water in applicable cells
-				  for (let waterInd = lastLand + 1; waterInd < lastLand + i - lastLand; waterInd++)
-				  {
-					cellVals[heightarr.length - h - 1][waterInd] = 'W';  // assumes square grid
-				  }
-			  }
-              lastLand = i;
+            cellVals[cellVals.length - h - 1][waterInd] = 'W';  
           }
+        }
+        lastLand = i;
       }
+    }
       
-	  // move to next higher row
-      heightarr = heightarr.map( (item) => (item > 0) ? --item : item);
-      if (!(heightarr.some( (item) =>  item > 0 )))
-          break;  // reached the top
+    // move to next higher row
+    heightarr = heightarr.map( (item) => (item > 0) ? --item : item);
+    if (!(heightarr.some( (item) =>  item > 0 )))
+      break;  // reached the top
   }
   return water;
 };

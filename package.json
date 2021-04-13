@@ -17,7 +17,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-	"jest": { "setupFilesAfterEnv": ["<rootDir>/jest-setup.js"] }
+    "jest": {
+      "setupFilesAfterEnv": [
+        "<rootDir>/jest-setup.js"
+      ]
+    }
   },
   "eslintConfig": {
     "extends": [
